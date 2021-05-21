@@ -1,9 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import hello from "../../assets/hello.svg";
 import Chart from "../../admin/charts/Chart";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { listUser } from "../../actions/userActions";
+import { listOrder } from "../../actions/orderActions";
+import { listProduct } from "../../actions/productActions";
+import LoadingBox from "../../components/LoadingBox";
 
 function Main() {
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
+
+  const userList = useSelector((state) => state.userList);
+  const { users, loading: userListLoading } = userList;
+  const orderListAll = useSelector((state) => state.orderListAll);
+  const { orders, loading: orderListLoading } = orderListAll;
+  const productList = useSelector((state) => state.productList);
+  const { products, loading: productListLoading } = productList;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!users) {
+      dispatch(listUser());
+    } else {
+      setTotalUsers(users.length);
+    }
+
+    if (!orders) {
+      dispatch(listOrder());
+    } else {
+      setTotalOrders(orders.length);
+    }
+
+    if (!products) {
+      dispatch(listProduct());
+    } else {
+      setTotalProducts(products.length);
+    }
+  }, [users, orders, products, dispatch]);
+
   return (
     <main>
       <div className="main__container">
@@ -26,7 +64,9 @@ function Main() {
               <i class="fas fa-user fa-2x"></i>
               <div className="card_inner">
                 <p className="text-primary-p">Number of Users</p>
-                <span className="font-bold text-title">578</span>
+                <span className="font-bold text-title">
+                  {userListLoading ? <LoadingBox /> : totalUsers}
+                </span>
               </div>
             </div>
           </Link>
@@ -36,7 +76,9 @@ function Main() {
               <i class="fas fa-file-alt fa-2x"></i>
               <div className="card_inner">
                 <p className="text-primary-p">Number of Orders</p>
-                <span className="font-bold text-title">2467</span>
+                <span className="font-bold text-title">
+                  {orderListLoading ? <LoadingBox /> : totalOrders}
+                </span>
               </div>
             </div>
           </Link>
@@ -46,7 +88,9 @@ function Main() {
               <i class="fas fa-tshirt fa-2x"></i>
               <div className="card_inner">
                 <p className="text-primary-p">Number of Products</p>
-                <span className="font-bold text-title">340</span>
+                <span className="font-bold text-title">
+                  {productListLoading ? <LoadingBox /> : totalProducts}
+                </span>
               </div>
             </div>
           </Link>
