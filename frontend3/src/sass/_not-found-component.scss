@@ -1,0 +1,132 @@
+// box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1)
+// h1: { font-size: 18vw; line-height: 1em}
+// h4 : { font-size: 2em }
+// p: { font-size: 1.2em }
+// button {bg: #69a6ce; border-radius: 25px}
+// background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6); height: 100vh; background-size: 400%;
+#notfound {
+  height: 80vh;
+  background: -webkit-repeating-linear-gradient(
+    -45deg,
+    #71b7e6,
+    #69a6ce,
+    #b98acc,
+    #ee8176,
+    #b98acc,
+    #69a6ce,
+    #9b59b6
+  );
+  background-size: 400%;
+  position: relative;
+
+  .notfound-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 17%;
+    right: 17%;
+    bottom: 20%;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .notfound-content {
+      max-width: 600px;
+      text-align: center;
+
+      h1 {
+        font-size: 15vw;
+        line-height: 1em;
+        font-weight: 700;
+        position: relative;
+
+        &::after {
+          position: absolute;
+          content: attr(data-text);
+          top: 0;
+          left: 0;
+          background: -webkit-repeating-linear-gradient(
+            -45deg,
+            #71b7e6,
+            #69a6ce,
+            #b98acc,
+            #ee8176,
+            #b98acc,
+            #69a6ce,
+            #9b59b6
+          );
+          background-size: 400%;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.25);
+          animation: animate 10s ease-in-out infinite;
+        }
+        @keyframes animate {
+          0% {
+            background-position: 0 0;
+          }
+          25% {
+            background-position: 100% 0;
+          }
+          50% {
+            background-position: 100% 100%;
+          }
+          75% {
+            background-position: 0 100%;
+          }
+          100% {
+            background-position: 0 0;
+          }
+        }
+      }
+
+      h4 {
+        text-transform: uppercase;
+        max-width: 600px;
+        font-size: 2em;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 20px;
+        position: relative;
+
+        &::after {
+          position: absolute;
+          content: attr(data-text);
+          top: 0;
+          left: 0;
+          text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+
+      p {
+        font-size: 1.2em;
+        color: #0d0d0d;
+      }
+
+      .notfound-btn {
+        margin: 25px 0;
+        display: inline-flex;
+
+        a {
+          display: inline-block;
+          text-decoration: none;
+          border: 2px solid #69a6ce;
+          color: #69a6ce;
+          font-weight: 500;
+          padding: 10px 25px;
+          border-radius: 25px;
+          text-transform: uppercase;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: #69a6ce;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

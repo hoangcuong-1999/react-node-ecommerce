@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  box-sizing: border-box;
+}
+
+.text__primary-p {
+  color: #a5aaad;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.font__bold {
+  font-weight: 700;
+}
+
+.text__title {
+  color: #2e4a66;
+}
+
+.text__lightblue {
+  color: #469cac;
+}
+
+.text__red {
+  color: #cc3d38;
+}
+
+.text__yellow {
+  color: #a98921;
+}
+
+.text__green {
+  color: #3b9668;
+}
+
+.dashboard__container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 0.8fr 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+    "sidebar nav nav nav"
+    "sidebar main main main";
+}
+
+@media only screen and (max-width: 978px) {
+  .custom__container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "nav"
+      "main";
+  }
+}

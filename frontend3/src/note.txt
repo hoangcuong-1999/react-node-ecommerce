@@ -1,0 +1,57 @@
+- offsetHeight => height của chính phần tử đó
+- offsetTop => khoảng cách từ border của div con đến border div cha
+- The pageXOffset and pageYOffset properties returns the pixels of the current document has been scrolled from the upper left corner of the window, horizontally and vertically.
+
+- The pageXOffset and pageYOffset properties are equal to the scrollX and scrollY properties.
+
+- These properties are read-only.
+
+
+
+// How to set state value using effect :
+const [value, setValue] = useState("")
+
+useEffect(() => {
+   if(!value) {
+      dispatch(getValue());
+   } else {
+      setValue(value.name)
+   }
+})
+
+Data to send to server is string, but when server storing that data to Mongo, Mongo automatically convert it to the defined type in its schema. For compare task, we have to parse this string to the actually type where it declared in postman form (form data, url encoded form) (in post man, type String have "" will be string when converting, no "" will be converted to its actual type)
+
+** Sometimes we've to write seperate useEffects to get effected
+
+Multiple actions can use the same action constants, and single reducer will catch those constants come from different actions
+   - multiple actions -> 1 reducer -> 1 store
+
+   {/* <div className="product__details__btns__option">
+                      <Link to="#">
+                        <i className="fa fa-heart"></i> add to wishlist
+                      </Link>
+                      <Link to="#">
+                        <i className="fa fa-exchange"></i> Add To Compare
+                      </Link>
+                    </div> */}
+
+
+                    {/* Empty ratings */}
+                {/* <div className="rating__box__empty">
+                          <div className="box__empty__icon">
+                            <img src="/assets/img/icon/no-rating.png" alt="" />
+                          </div>
+                          <div className="box_empty_text">
+                            There is no rating yet
+                          </div>
+                        </div> */}
+
+                {/* There is no rating yet */}
+                {/* <div className="rating__box__empty">
+                  <div className="box__empty__icon">
+                    <img src="/assets/img/icon/no-rating.png" alt="" />
+                  </div>
+                  <div className="box_empty_text">There is no rating yet</div>
+                </div> */}
+
+1 component ta có thể truyền cho nó 1 đóng props, ko vấn j 

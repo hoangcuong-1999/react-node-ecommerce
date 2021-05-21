@@ -1,0 +1,37 @@
+#contact-show {
+  .product-table {
+    table {
+      th.contact__count {
+        width: 7%;
+      }
+      th.contact__name {
+        width: 18%;
+      }
+      th.contact__email {
+        width: 19%;
+      }
+      th.contact__subject {
+        width: 22%;
+      }
+      th.contact__message {
+        width: 26%;
+      }
+
+      td {
+        .fa-eye {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  label {
+    margin-right: 20px;
+    color: #fff;
+  }
+}
+
+.react-responsive-modal-modal {
+  min-width: 800px;
+  padding: 1.2rem 1.5rem 2.5rem 1.2rem !important;
+}

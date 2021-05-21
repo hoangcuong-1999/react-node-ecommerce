@@ -1,0 +1,16 @@
+Next: reset cart
+getState() => Lấy hết thuộc tính của store
+VD truy xuất userSignin của store: getState().userSignin
+
+const {
+    name = "all",
+    category = "all",
+    brand = "all",
+    order = "price",
+    type = "lowest",
+    min = 0,
+    max = 1000000,
+    rating = 0,
+  } = useParams();
+
+-> Giá trị gán cho mỗi param là tạm, nếu kiểm tra thấy trên thanh url là giá trị khác sẽ lấy giá trị đó, ngược lại lấy gía trị tạm

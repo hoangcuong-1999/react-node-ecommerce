@@ -1,0 +1,17 @@
+#category-show {
+  grid-area: main;
+
+  .product-table {
+    table {
+      th.category__count {
+        width: 20%;
+      }
+      th.category__name {
+        width: 28%;
+      }
+      th.category__description {
+        width: 44%;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+#order-show {
+  td.status__icon {
+    img {
+      width: 25px;
+    }
+  }
+
+  th.order__name {
+    width: 15%;
+  }
+
+  th.order__phone {
+    width: 17%;
+  }
+  th.order__status {
+    width: 15%;
+  }
+
+  th.order__paid {
+    width: 12%;
+  }
+
+  th.order__total {
+    width: 11.5%;
+  }
+
+  th.order__date {
+    width: 18%;
+  }
+}

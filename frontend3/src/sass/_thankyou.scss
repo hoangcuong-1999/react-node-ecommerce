@@ -1,0 +1,19 @@
+.thankyou {
+  padding: 28px 0 100px;
+  //   background-image: url("../assets/img/background/pixel-heart.png");
+  //   background-repeat: repeat;
+  //   border-top: 2px solid #eee;
+
+  .thankyou__icon {
+    margin-top: 28px;
+    img {
+      width: 50px;
+    }
+  }
+
+  .thankyou__message {
+    margin-top: 12px;
+    font-weight: 500;
+    font-size: 30px;
+  }
+}

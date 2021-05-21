@@ -1,0 +1,100 @@
+.signin {
+  // background: #eaeded;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #f3f2ee;
+
+  .signin__box {
+    width: 550px;
+    height: auto;
+    background-color: #fff;
+    //  height: 500px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+    padding: 50px;
+
+    .signin__box__text {
+      text-align: center;
+      margin-bottom: 35px;
+
+      h2 {
+        font-size: 44px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 17px;
+        color: #111;
+
+        a {
+          text-decoration: underline;
+          font-weight: 600;
+
+          &:hover {
+            color: #0a42ab;
+          }
+        }
+      }
+    }
+
+    .signin__box__input {
+      .input__field {
+        margin-bottom: 20px;
+
+        input {
+          display: block;
+          width: 100%;
+          padding: 13px 20px;
+          border: none;
+          border-radius: 5px;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+            rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+          font-size: 18px;
+          color: #434345;
+        }
+      }
+    }
+
+    .remember__me {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      input {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        //   appearance: none;
+        //   border: 1px solid #d1d1d1;
+        //   border-radius: 5px;
+      }
+
+      span {
+        color: #777;
+      }
+    }
+
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      color: #434345;
+      background: linear-gradient(
+        45deg,
+        rgba(30, 87, 153, 1) 0%,
+        rgba(41, 137, 216, 1) 100%,
+        rgba(125, 185, 232, 1) 100%
+      );
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  }
+}

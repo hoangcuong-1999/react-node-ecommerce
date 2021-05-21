@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap");
+.signin {
+  position: relative;
+  height: 100vh;
+  background-image: url("../assets/bg/blue-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .signin-wrapper {
+    position: absolute;
+    top: 17%;
+    right: 17%;
+    bottom: 22%;
+    left: 17%;
+    // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    .row {
+      width: 100%;
+      height: 100%;
+    }
+
+    .signin-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background: #8e2de2; /* fallback for old browsers */
+      background: -webkit-linear-gradient(
+        to right,
+        #4a00e0,
+        #8e2de2
+      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(
+        to right,
+        #4a00e0,
+        #8e2de2
+      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      .signin-left__content {
+        position: relative;
+        top: -25px;
+
+        .signin-left__image {
+          text-align: center;
+        }
+      }
+
+      h2 {
+        font-weight: 700;
+        font-family: "Montserrat Alternates", sans-serif;
+        // text-transform: uppercase;
+        color: #fff;
+        letter-spacing: 3px;
+      }
+
+      .signin-left__image {
+        margin-bottom: 25px;
+
+        img {
+          width: 120px;
+        }
+      }
+    }
+
+    .signin-right {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+
+      form {
+        width: 75%;
+        margin: auto;
+        position: relative;
+
+        label {
+          display: inline-block;
+          width: 100%;
+          margin-bottom: 25px;
+          color: #69a6ce;
+          line-height: 36px;
+          position: relative;
+
+          input {
+            display: block;
+            width: 100%;
+            height: 50px;
+            padding: 0 20px 0 50px;
+            border: 1px solid #69a6ce;
+            border-radius: 3px;
+            color: #69a6ce;
+
+            &::placeholder {
+              color: #69a6ce;
+            }
+          }
+
+          span {
+            position: absolute;
+            bottom: 7px;
+            left: 18px;
+          }
+        }
+
+        .forget-password {
+          text-align: right;
+          position: relative;
+          top: -18px;
+
+          a {
+            display: inline-block;
+            color: #69a6ce;
+            font-size: 15px;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .submit-btn {
+          text-align: right;
+          position: relative;
+          top: 78px;
+
+          input[type="submit"] {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #0000e6;
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            border-radius: 3px;
+            // margin-top: 30px;
+          }
+        }
+
+        .alert-danger {
+          position: absolute;
+          top: -66px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

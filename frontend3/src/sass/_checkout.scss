@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+// font-family: 'Lato', sans-serif;
+.shipping__info {
+  margin-bottom: 20px;
+
+  .shipping__info__content {
+    padding: 38px;
+    background: #f5f5f5;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    margin-top: 36px;
+
+    p,
+    span,
+    button {
+      font-family: "Lato", sans-serif;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .shipping__info__title {
+      margin-bottom: 20px;
+
+      h2 {
+        font-size: 20px;
+        font-weight: 500;
+        color: #111;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e1e1e1;
+      }
+    }
+
+    .shipping__info__first {
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .shipping__info__third {
+      text-align: right;
+
+      a {
+        font-family: "Lato", sans-serif;
+        text-decoration: underline;
+        color: #05a;
+      }
+    }
+  }
+}
+
+.checkout {
+  .checkout__content {
+    margin: auto;
+    padding: 38px;
+    background: #f5f5f5;
+    margin-bottom: 60px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+
+    span {
+      float: right;
+    }
+
+    .not__float__span {
+      float: none;
+    }
+
+    .checkout__title {
+      font-size: 26px;
+      font-weight: 600;
+      color: #111;
+      text-transform: uppercase;
+      padding-bottom: 2px;
+      border-bottom: 1px solid #e1e1e1;
+      margin-bottom: 20px;
+    }
+
+    .checkout__products {
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        margin-bottom: 20px;
+      }
+
+      &.checkout__order__products {
+        border-bottom: 1px solid #e1e1e1;
+        margin-bottom: 20px;
+      }
+
+      &.checkout__total__all {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e1e1e1;
+
+        li {
+          font-family: "Lato", sans-serif;
+        }
+
+        span {
+          color: #ff2832;
+          font-weight: 500;
+        }
+      }
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      background: #f08804;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: 500;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .checkout__payment__method {
+      display: flex;
+      align-items: center;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e1e1e1;
+
+      button {
+        box-shadow: none;
+      }
+
+      .checkout__payment__method__title {
+        display: inline-block;
+      }
+
+      button {
+        width: 35%;
+        margin-left: 20px;
+        background: none;
+        color: #111;
+        border: 1px solid #d1d1d1;
+        color: #111;
+        text-transform: capitalize;
+
+        &.active {
+          border: 1px solid #ff2832;
+          color: #ff2832;
+        }
+      }
+    }
+
+    .paypal__payment__method {
+      width: 35%;
+      margin: auto;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e1e1e1;
+      margin-bottom: 20px;
+    }
+
+    .checkout__title__1 {
+      font-size: 20px;
+      font-weight: 500;
+      color: #111;
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e1e1e1;
+      margin-bottom: 20px;
+    }
+
+    .checkout__title__2 {
+      margin-bottom: 17px;
+      font-weight: 500;
+    }
+
+    .checkout__title__2__right {
+      float: right;
+      font-weight: 500;
+    }
+
+    .checkout__cart__items {
+      margin-bottom: 36px;
+      table {
+        width: 100%;
+
+        th {
+          padding: 10px 20px;
+          font-weight: 500;
+        }
+
+        th.number {
+          width: 10%;
+        }
+
+        th.name {
+          width: 35%;
+        }
+
+        th.quantity {
+          width: 15%;
+        }
+
+        th.size {
+          width: 15%;
+        }
+
+        th.color {
+          width: 15%;
+        }
+
+        td {
+          padding: 3px 20px;
+          font-family: "Lato", sans-serif;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+}

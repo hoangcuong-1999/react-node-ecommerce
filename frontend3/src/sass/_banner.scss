@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.banner {
+  padding: 60px 0;
+  font-family: "Poppins", sans-serif;
+
+  .banner__item {
+    position: relative;
+
+    .banner__item__pic {
+      float: right;
+    }
+
+    .banner__item__text {
+      position: absolute;
+      top: 140px;
+      left: 0;
+      margin-left: -10px;
+
+      h2 {
+        width: 70%;
+        line-height: 46px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 17px;
+        font-size: 35px;
+      }
+
+      a {
+        display: inline-block;
+        color: #111;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 13px;
+        font-weight: 600;
+        padding-bottom: 2px;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 2px;
+          width: 100%;
+          background-color: #111;
+          transition: all 0.3s;
+        }
+      }
+    }
+
+    &:hover {
+      .banner__item__text {
+        a {
+          &::after {
+            width: 70%;
+            background: #db2541;
+          }
+        }
+      }
+    }
+
+    &.banner__item--middle {
+      margin-top: -70px;
+
+      .banner__item__pic {
+        float: none;
+      }
+
+      .banner__item__text {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0;
+        max-width: 100%;
+        padding-top: 20px;
+      }
+    }
+
+    &.banner__item--last {
+      margin-top: 100px;
+
+      .banner__item__text {
+        width: 80%;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+#brand-show {
+  grid-area: main;
+
+  .product-table {
+    table {
+      th.brand__count {
+        width: 20%;
+      }
+      th.brand__name {
+        width: 28%;
+      }
+      th.brand__description {
+        width: 44%;
+      }
+    }
+  }
+}

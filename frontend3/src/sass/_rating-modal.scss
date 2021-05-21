@@ -1,0 +1,71 @@
+#rating-modal {
+  .imgBox {
+    margin-right: 10px;
+    img {
+      width: 40px;
+    }
+  }
+
+  .product {
+    .product__brand {
+      font-size: 13px;
+    }
+  }
+
+  .content {
+    margin-top: 28px;
+    text-align: center;
+
+    .content__title {
+      margin-bottom: 10px;
+
+      div {
+        font-size: 22px;
+        font-weight: 500;
+      }
+    }
+
+    .content__point {
+      margin-bottom: 30px;
+
+      i {
+        display: inline-block;
+        color: rgb(255, 181, 0);
+        margin: 0 8px;
+        cursor: pointer;
+      }
+    }
+
+    .content__comment {
+      textarea {
+        width: 100%;
+        border: 1px solid rgb(238, 238, 238);
+        padding: 12px;
+
+        &::placeholder {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .btn {
+    margin-top: 16px;
+    display: block;
+    text-align: center;
+
+    button {
+      display: inline-block;
+      border: none;
+      background: rgb(255, 181, 0);
+      padding: 8px 100px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 300;
+    }
+  }
+}
+
+.react-responsive-modal-modal {
+  min-width: 650px;
+}

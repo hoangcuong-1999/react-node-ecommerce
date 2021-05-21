@@ -1,0 +1,11 @@
+.admin_dropdown__item {
+  display: block;
+  margin: 5px 10px !important;
+  padding: 0 !important;
+  font-size: 15px !important;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  font-size: 18px !important;
+}

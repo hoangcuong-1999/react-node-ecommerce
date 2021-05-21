@@ -1,0 +1,48 @@
+#header {
+  .__logo {
+    padding: 40px 100px;
+    font-family: "Lato", sans-serif;
+    font-size: 2.5rem;
+    background-color: #4000ff;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .__nav {
+    background: #444;
+    width: 100%;
+
+    ul {
+      li {
+        display: inline-block;
+
+        a {
+          display: block;
+          font-size: 14px;
+          text-transform: uppercase;
+          color: #fff;
+          font-weight: 700;
+          padding: 10px 20px;
+          border-right: 1px solid #666;
+        }
+
+        &.active {
+          a {
+            background-color: red;
+          }
+        }
+      }
+    }
+  }
+}
+
+#__section {
+  height: 2000px;
+  background-color: #c2c2d6;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

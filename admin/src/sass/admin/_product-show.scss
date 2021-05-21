@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+#product-show,
+#category-show,
+#brand-show,
+#contact-show,
+#user-show,
+#order-show,
+#admin-order-details {
+  grid-area: main;
+  font-family: "Poppins", sans-serif;
+
+  .product-table {
+    padding: 16px;
+
+    label {
+      margin-right: 20px;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .product-table__options {
+      padding: 16px;
+      box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+      // background: linear-gradient(
+      //   90deg,
+      //   rgb(110, 94, 254) 0%,
+      //   rgba(73, 63, 252, 1) 100%
+      // );
+      background: #1e3c72; /* fallback for old browsers */
+      background: -webkit-linear-gradient(
+        to top,
+        #2a5298,
+        #1e3c72
+      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(
+        to top,
+        #2a5298,
+        #1e3c72
+      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .options {
+        display: inline-block;
+
+        &.options__search {
+          margin-right: 16px;
+
+          input[type="text"] {
+            border: 1px solid #ccc;
+            padding: 5px 10px 5px 17px;
+            width: 270px;
+          }
+
+          button {
+            padding: 5px 20px;
+            border: 1px solid #ccc;
+            border-left: none;
+            background-color: #007bff;
+            color: #fff;
+          }
+        }
+
+        &.options__create {
+          button {
+            padding: 7px 16px;
+            border: none;
+            background: #3ea175;
+            color: #fff;
+            border-radius: 3px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    table {
+      display: inline-block;
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+      // box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      //   rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+      //   rgba(0, 0, 0, 0.24) 0px 1px 2px;
+      border: 1px solid #ddd;
+      border-top: none;
+      padding: 10px;
+    }
+
+    td,
+    th {
+      border-bottom: 1px solid #f1f1f1;
+      text-align: left;
+      padding: 16px;
+    }
+
+    tr:last-child {
+      td {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      .table__img {
+        width: 40px;
+        height: 45px;
+        position: relative;
+
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .fa-edit,
+      .fa-eye,
+      .fa-user {
+        margin-right: 20px;
+        color: #fff;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: #3ea175;
+        border-radius: 3px;
+        text-align: center;
+        line-height: 30px;
+      }
+
+      .fa-trash-alt {
+        display: inline-block;
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        background: #dc3545;
+        border-radius: 3px;
+        line-height: 30px;
+        text-align: center;
+      }
+    }
+
+    th.product__count {
+      width: 3%;
+    }
+
+    th.product__name {
+      width: 20%;
+    }
+    td.product__name {
+      max-width: 278px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th.product__description {
+      width: 36%;
+    }
+    td.product__description {
+      max-width: 501px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th.product__price {
+      width: 9%;
+    }
+
+    th.product__countInStock {
+      width: 12%;
+    }
+
+    th.product__img {
+      width: 11%;
+
+      .table__img {
+        width: 45px;
+        height: 60px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
