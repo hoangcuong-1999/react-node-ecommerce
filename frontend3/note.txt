@@ -14,3 +14,9 @@ const {
   } = useParams();
 
 -> Giá trị gán cho mỗi param là tạm, nếu kiểm tra thấy trên thanh url là giá trị khác sẽ lấy giá trị đó, ngược lại lấy gía trị tạm
+
+=> quan trong: var transporter =  nodemailer.createTransport({..}) phải đặt trong controller:
+mailRouter.post('/send-mail', (req, res) => {
+  var transporter =  nodemailer.createTransport({...})
+  .....
+})

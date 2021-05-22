@@ -12,11 +12,21 @@ const categoryRouter = require("./routers/categoryRouter");
 const brandRouter = require("./routers/brandRouter");
 const path = require("path");
 const ratingRouter = require("./routers/ratingRouter");
+const mailRouter = require("./routers/mailRouter");
 // const cors = require("cors");
 
 const app = express();
 
 env.config();
+
+// set the view engine to ejs
+app.set("view engine", "ejs");
+
+app.get("/ejs", function (req, res) {
+  res.render("index");
+});
+
+app.use(express.static("assets"));
 
 // app.use(cors());
 // cors option demo
@@ -39,6 +49,8 @@ app.use((err, req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// // loading mailRouter
+app.use("/api/email", mailRouter);
 // Loading ratingRouter
 app.use("/api/ratings", ratingRouter);
 // Loading adminRouter
