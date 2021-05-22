@@ -12,7 +12,7 @@ const categoryRouter = require("./routers/categoryRouter");
 const brandRouter = require("./routers/brandRouter");
 const path = require("path");
 const ratingRouter = require("./routers/ratingRouter");
-const mailRouter = require("./routers/mailRouter");
+// const mailRouter = require("./routers/mailRouter");
 // const cors = require("cors");
 
 const app = express();
@@ -21,12 +21,6 @@ env.config();
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
-
-app.get("/ejs", function (req, res) {
-  res.render("index");
-});
-
-app.use(express.static("assets"));
 
 // app.use(cors());
 // cors option demo
@@ -50,7 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // // loading mailRouter
-app.use("/api/email", mailRouter);
+// app.use("/api/email", mailRouter);
 // Loading ratingRouter
 app.use("/api/ratings", ratingRouter);
 // Loading adminRouter
@@ -77,11 +71,75 @@ app.get("/", (req, res) => {
 // Serve static resources
 // const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(path.resolve(), "/uploads")));
+app.use("/views", express.static(path.join(path.resolve(), "/views")));
 
 // Paypal CLIENT_ID API
 app.get("/api/paypal/client-id", (req, res) => {
   res.send(process.env.CLIENT_ID);
 });
+
+//---------------------------------------------------------------------------------
+
+const ejs = require("ejs");
+const nodemailer = require("nodemailer");
+
+// transporter.verify((err, success) => {
+//   err
+//     ? console.log(err)
+//     : console.log(`=== Server is ready to take messages: ${success} ===`);
+// });
+
+app.post("/send-mail", (req, res) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      type: "OAuth2",
+      user: process.env.EMAIL,
+      pass: process.env.WORD,
+      clientId: process.env.OAUTH_CLIENTID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+    },
+  });
+
+  const name = "Hoang Cuong Tran";
+  const message =
+    "Thank you for your order. We will check our order and send email back to you as soon as possible.";
+
+  ejs.renderFile(
+    __dirname + "/MailContent.ejs",
+    { name, message },
+    function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        let mailOptions = {
+          from: process.env.EMAIL,
+          to: req.body.email,
+          subject: "Test Subject",
+          text: "Test Message",
+          html: data,
+        };
+
+        //console.log("html data ======================>", mainOptions.html);
+
+        transporter.sendMail(mailOptions, function (err, info) {
+          if (err) {
+            res.json({
+              msg: "fail",
+            });
+          } else {
+            res.json({
+              msg: "success",
+            });
+          }
+        });
+      }
+    }
+  );
+});
+
+//---------------------------------------------------------------------------------
 
 const port = process.env.PORT || 4000;
 
