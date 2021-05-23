@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import PayPalButtonV2 from "./PayPalButtonV2";
 import { RESET_PROFILE_SUCCESS_PROP } from "../constants/userProfileConstants";
 import { Link } from "react-router-dom";
+import { PLACE_ORDER_RESET } from "../constants/orderConstants";
 
 function CheckoutPage(props) {
   // const [paidFor, setPaidFor] = useState(false);
@@ -88,6 +89,23 @@ function CheckoutPage(props) {
       }
     });
   };
+
+  // const orderCreate = useSelector((state) => state.orderCreate);
+  // const {
+  //   order,
+  //   loading: orderCreateLoading,
+  //   error: orderCreateError,
+  // } = orderCreate;
+
+  useEffect(() => {
+    if (order) {
+      Swal.fire("Success!", "Your order is placed successfully.", "success");
+      props.history.push(`/thankyou`);
+    }
+    return () => {
+      dispatch({ type: PLACE_ORDER_RESET });
+    };
+  }, [props.history, order, dispatch]);
 
   return (
     <>

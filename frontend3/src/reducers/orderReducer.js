@@ -17,6 +17,7 @@ import {
   ORDER_CANCLE_FAIL,
   ORDER_CANCLE_RESET,
   ORDER_CHANGE_STATUS,
+  PLACE_ORDER_RESET,
 } from "../constants/orderConstants";
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -33,6 +34,8 @@ export const orderCreateReducer = (state = {}, action) => {
       return { loading: false, order: action.payload.order };
     case ORDER_BY_PAYPAL_FAIL:
       return { loading: false, order: action.payload };
+    case PLACE_ORDER_RESET:
+      return {};
     default:
       return state;
   }

@@ -51,10 +51,7 @@ orderRouter.post(
     });
 
     const email = req.user.email;
-    await Axios.post(
-      `http://localhost:5000/send-mail?type=${status.toLowerCase()}`,
-      { email }
-    );
+    await Axios.post(`http://localhost:5000/send-mail?type=pending`, { email });
 
     res.status(201).send({ message: "New order created", order: createdOrder });
   })
