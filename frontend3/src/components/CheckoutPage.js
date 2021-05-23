@@ -80,9 +80,9 @@ function CheckoutPage(props) {
       cancelButtonText: "Not yet",
     }).then((result) => {
       if (result.value) {
-        Swal.fire("Success!", "Your order is placed successfully.", "success");
+        // Swal.fire("Success!", "Your order is placed successfully.", "success");
         dispatch(placeOrder({ ...cart }));
-        props.history.push(`/thankyou`);
+        // props.history.push(`/thankyou`);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire("Cancelled", "Your order has been canclled.", "error");
       }

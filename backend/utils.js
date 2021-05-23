@@ -69,3 +69,17 @@ exports.updateProductRating = async (createdRating) => {
   product.rating = avgPoint;
   await product.save();
 };
+
+// mailContent, req.body.email, subject, text,
+const { mails } = require("./data");
+
+exports.checkMailType = (req, res, next) => {
+  const { type } = req.query;
+  const mailObj = mails.find((item) => item.type === type);
+  if (mailObj) {
+    req.mailObj = mailObj;
+    next();
+  } else {
+    next();
+  }
+};

@@ -19,9 +19,6 @@ const app = express();
 
 env.config();
 
-// set the view engine to ejs
-app.set("view engine", "ejs");
-
 // app.use(cors());
 // cors option demo
 // const option = {
@@ -80,8 +77,8 @@ app.get("/api/paypal/client-id", (req, res) => {
 
 //---------------------------------------------------------------------------------
 
-const ejs = require("ejs");
 const nodemailer = require("nodemailer");
+const ejs = require("ejs");
 
 // transporter.verify((err, success) => {
 //   err
@@ -89,54 +86,46 @@ const nodemailer = require("nodemailer");
 //     : console.log(`=== Server is ready to take messages: ${success} ===`);
 // });
 
-app.post("/send-mail", (req, res) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: process.env.EMAIL,
-      pass: process.env.WORD,
-      clientId: process.env.OAUTH_CLIENTID,
-      clientSecret: process.env.OAUTH_CLIENT_SECRET,
-      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-    },
-  });
+const { checkMailType } = require("./utils");
 
-  const name = "Hoang Cuong Tran";
-  const message =
-    "Thank you for your order. We will check our order and send email back to you as soon as possible.";
-
-  ejs.renderFile(
-    __dirname + "/MailContent.ejs",
-    { name, message },
-    function (err, data) {
-      if (err) {
-        console.log(err);
-      } else {
-        let mailOptions = {
-          from: process.env.EMAIL,
-          to: req.body.email,
-          subject: "Test Subject",
-          text: "Test Message",
-          html: data,
-        };
-
-        //console.log("html data ======================>", mainOptions.html);
-
-        transporter.sendMail(mailOptions, function (err, info) {
-          if (err) {
-            res.json({
-              msg: "fail",
-            });
-          } else {
-            res.json({
-              msg: "success",
-            });
-          }
-        });
+app.post("/send-mail", checkMailType, (req, res) => {
+  if (req.mailObj) {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.EMAIL,
+        pass: process.env.WORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+      },
+    });
+    ejs.renderFile(
+      __dirname + `/views/${req.mailObj.content}`,
+      {},
+      function (err, data) {
+        if (err) {
+          res.send({ error: err.message });
+        } else {
+          let mailOptions = {
+            from: process.env.EMAIL,
+            to: req.body.email,
+            subject: req.mailObj.subject,
+            text: req.mailObj.text,
+            html: data,
+          };
+          transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+              res.send({ msg: "fail" });
+            } else {
+              res.send({ msg: "success" });
+            }
+          });
+        }
       }
-    }
-  );
+    );
+  }
 });
 
 //---------------------------------------------------------------------------------

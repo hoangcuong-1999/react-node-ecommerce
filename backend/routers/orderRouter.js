@@ -3,7 +3,9 @@ const { isAuth, isAdmin } = require("../utils");
 const Order = require("../models/orderModel");
 const expressAsyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
+const User = require("../models/userModel");
 const { db } = require("../models/orderModel");
+const Axios = require("axios");
 
 const orderRouter = express.Router();
 
@@ -41,12 +43,18 @@ orderRouter.post(
 
     const createdOrder = await newOrder.save();
 
-    // Reduce countInStock from Product model response for bought qty
+    //Reduce countInStock from Product model response for bought qty
     createdOrder.cartItems.forEach(async (item) => {
       const pro = await Product.findById(item.product);
       pro.countInStock = pro.countInStock - Number(item.qty);
       await pro.save();
     });
+
+    const email = req.user.email;
+    await Axios.post(
+      `http://localhost:5000/send-mail?type=${status.toLowerCase()}`,
+      { email }
+    );
 
     res.status(201).send({ message: "New order created", order: createdOrder });
   })
@@ -139,7 +147,7 @@ orderRouter.get(
   })
 );
 
-//== Confirm order
+//== Handling order status
 orderRouter.put(
   "/:id",
   isAuth,
@@ -147,12 +155,22 @@ orderRouter.put(
   expressAsyncHandler(async (req, res) => {
     const { status } = req.body;
     try {
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id).populate("user");
       order.status = status;
       const editedOrder = await order.save();
+
+      // Send email
+      if (status !== "CancledByAdmin") {
+        const email = order.user.email;
+        await Axios.post(
+          `http://localhost:5000/send-mail?type=${status.toLowerCase()}`,
+          { email }
+        );
+      }
+
       res.send(editedOrder);
     } catch (error) {
-      res.status(500).send({ message: "Internal Server Error" });
+      res.status(500).send(error.message);
     }
   })
 );

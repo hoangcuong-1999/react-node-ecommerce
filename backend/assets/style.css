@@ -1,45 +1,6 @@
-/*
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-  </head>
-  <body>
-    <main>
-      <div class="mail-box">
-        <div class="shop-logo">Fashion</div>
-        <div class="mail-content">
-          <p>Hi thcuong1999@gmail.com</p>
-          <p>
-            Thank you for your order. We will check our order and send email
-            back to you as soon as possible.
-          </p>
-          <p>
-            If you'd like to get in touch, email us at thcuong1999@gmail.com
-          </p>
-        </div>
-        <div class="shop-social">
-          <ul>
-            <li>
-              <a href="#"><i class="fab fa-facebook-square"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="fab fa-instagram-square"></i></a>
-            </li>
-          </ul>
-        </div>
-        <div class="copyright">@ 2019 Fashion, All rights reserved</div>
-      </div>
-    </main>
-  </body>
-</html>
-
-*/
+h1 {
+  color: #fff;
+}
+body {
+  background: red;
+}

@@ -1,6 +1,40 @@
 const bcrypt = require("bcryptjs");
 
+// mailContent, req.body.email, subject, text,
+
 const data = {
+  mails: [
+    {
+      type: "pending",
+      content: "PendingMail.ejs",
+      subject: "Your order has been created",
+      text: "Pending Text",
+    },
+    {
+      type: "confirm",
+      content: "ConfirmMail.ejs",
+      subject: "Your order has been confirm",
+      text: "Confirm Text",
+    },
+    {
+      type: "packed",
+      content: "PackedMail.ejs",
+      subject: "Your order has been packed prepare to deliver",
+      text: "Confirm Text",
+    },
+    {
+      type: "transporting",
+      content: "TransportingMail.ejs",
+      subject: "Your order is transporting",
+      text: "Transporting Text",
+    },
+    {
+      type: "received",
+      content: "ReceivedMail.ejs",
+      subject: "Delivered successfully",
+      text: "Received Text",
+    },
+  ],
   users: [
     {
       name: "Tran Thi Admin",
