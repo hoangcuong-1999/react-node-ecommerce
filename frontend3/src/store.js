@@ -22,7 +22,7 @@ import {
   ratingReducer,
 } from "./reducers/ratingReducer";
 import { userProfileReducer } from "./reducers/userProfileReducer";
-import { userSigninReducer } from "./reducers/userReducer";
+import { userRegisterReducer, userSigninReducer } from "./reducers/userReducer";
 
 const preloadState = {
   cart: {
@@ -54,6 +54,7 @@ const rootReducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderCreate: orderCreateReducer,
   orderCancle: orderCancleReducer,
+  userRegister: userRegisterReducer,
   userSignin: userSigninReducer,
   userProfile: userProfileReducer,
   categoryList: categoryListReducer,

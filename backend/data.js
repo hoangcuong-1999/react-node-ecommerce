@@ -5,34 +5,24 @@ const bcrypt = require("bcryptjs");
 const data = {
   mails: [
     {
-      type: "pending",
-      content: "PendingMail.ejs",
-      subject: "Your order has been created",
-      text: "Pending Text",
-    },
-    {
-      type: "confirm",
-      content: "ConfirmMail.ejs",
+      type: "Confirm",
       subject: "Your order has been confirm",
-      text: "Confirm Text",
+      html: "<p>Thank you for your order. We'll check out your order and send email back to you as soon as possible.</p><p>Your cart item: </p>",
     },
     {
-      type: "packed",
-      content: "PackedMail.ejs",
-      subject: "Your order has been packed prepare to deliver",
-      text: "Confirm Text",
+      type: "Packed",
+      subject: "Your order has been packed",
+      html: "<p>Your order has been packed and being prepared to deliver.</p><p>Your cart item: </p>",
     },
     {
-      type: "transporting",
-      content: "TransportingMail.ejs",
-      subject: "Your order is transporting",
-      text: "Transporting Text",
+      type: "Transporting",
+      subject: "Your order is being transported",
+      html: "<p>Your order is transporting, please keep in touch to make the transaction successful.</p><p>Your cart item: </p>",
     },
     {
-      type: "received",
-      content: "ReceivedMail.ejs",
-      subject: "Delivered successfully",
-      text: "Received Text",
+      type: "Received",
+      subject: "Deliver successfully",
+      html: "<p>Thank you very much, the order has been delivered successfully.</p><p>Your cart item: </p>",
     },
   ],
   users: [

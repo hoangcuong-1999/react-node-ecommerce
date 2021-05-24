@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userActions";
 import LoadingBox from "./LoadingBox";
+import { USER_REGISTER_RESET } from "../constants/userConstants";
 
 function RegisterPage(props) {
   const [name, setName] = useState("");
@@ -12,7 +13,9 @@ function RegisterPage(props) {
   const [notMatch, setNotMatch] = useState("");
 
   const userSignin = useSelector((state) => state.userSignin);
-  const { loading, error, userInfo } = userSignin;
+  const { userInfo } = userSignin;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading: registerLoading, error: registerError, data } = userRegister;
 
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
@@ -30,7 +33,10 @@ function RegisterPage(props) {
     if (userInfo) {
       props.history.push(redirect);
     }
-  }, [userInfo, props.history, redirect]);
+    return () => {
+      dispatch({ type: USER_REGISTER_RESET });
+    };
+  }, [userInfo, props.history, redirect, dispatch]);
 
   return (
     <>
@@ -52,9 +58,9 @@ function RegisterPage(props) {
                 </Link>
               </p>
             </div>
-            {(error && (
+            {(registerError && (
               <div class="alert alert-danger" role="alert">
-                {error}
+                {registerError}
               </div>
             )) ||
               (notMatch && (
@@ -62,50 +68,58 @@ function RegisterPage(props) {
                   {notMatch}
                 </div>
               ))}
-            {loading && <LoadingBox />}
-            <div className="signin__box__input">
-              <div className="input__field">
-                <input
-                  type="text"
-                  placeholder="Shop name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
+            {registerLoading && <LoadingBox />}
+            {data && data.success ? (
+              <div class="alert alert-success" role="alert">
+                {data.message}
               </div>
-              <div className="input__field">
-                <input
-                  type="email"
-                  placeholder="E-mail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="input__field">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="input__field">
-                <input
-                  type="password"
-                  placeholder="Confirm password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-            <div className="remember__me">
-              <input type="checkbox" />
-              <span>Remember me</span>
-            </div>
-            <button type="submit">Register</button>
+            ) : (
+              <>
+                <div className="signin__box__input">
+                  <div className="input__field">
+                    <input
+                      type="text"
+                      placeholder="Shop name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="input__field">
+                    <input
+                      type="email"
+                      placeholder="E-mail"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="input__field">
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="input__field">
+                    <input
+                      type="password"
+                      placeholder="Confirm password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="remember__me">
+                  <input type="checkbox" />
+                  <span>Remember me</span>
+                </div>
+                <button type="submit">Register</button>
+              </>
+            )}
           </form>
         </div>
       </section>

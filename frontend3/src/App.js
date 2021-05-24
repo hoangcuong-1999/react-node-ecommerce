@@ -18,6 +18,7 @@ import ProfilePage from "./components/ProfilePage";
 import Header from "./components/Header";
 import NotFoundComponent from "./components/NotFoundComponent";
 import Demo from "./components/Demo";
+import MailConfirmPage from "./components/MailConfirmPage";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           path="/search/name/:name/category/:category/brand/:brand/order/:order/type/:type/min/:min/max/:max/rating/:rating/page/:page"
           component={ShopPage}
         />
+        <Route path="/confirm/:confirmationCode" component={MailConfirmPage} />
         <Route path="*" exact={true} component={NotFoundComponent} />
       </Switch>
       <Footer />

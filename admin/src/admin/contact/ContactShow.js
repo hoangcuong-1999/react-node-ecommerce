@@ -6,15 +6,11 @@ import { listContact } from "../../actions/contactActions";
 import LoadingBox from "../../components/LoadingBox";
 import ErrorBox from "../../components/ErrorBox";
 import ContactTable from "./ContactTable";
-import axios from "axios";
 //-------------------------------------------------------------
 
 function ContactShow() {
   const [query, setQuery] = useState("");
   const searchColumns = ["name", "email"];
-  const [mail, setMail] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [msg, setMsg] = useState("");
 
   const dispatch = useDispatch();
 
@@ -40,12 +36,6 @@ function ContactShow() {
             -1
         )
     );
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { data } = await axios.post("/api/email/send-mail", { email: mail });
-    console.log(data);
   };
 
   return (
@@ -79,18 +69,6 @@ function ContactShow() {
           ) : (
             <ContactTable contacts={search(contacts)} />
           )}
-        </div>
-
-        <div>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={mail}
-              onChange={(e) => setMail(e.target.value)}
-              placeholder="Enter destination email"
-            />
-            <input type="submit" value="Send" />
-          </form>
         </div>
       </section>
     </>

@@ -3,8 +3,9 @@ const expressAsyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const data = require("../data");
 const User = require("../models/userModel");
-const { generateToken, isAuth, isAdmin } = require("../utils");
+const { generateToken, isAuth, isAdmin, sendMail } = require("../utils");
 const Profile = require("../models/profileModel");
+const jwt = require("jsonwebtoken");
 
 const userRouter = express.Router();
 //=== ADMIN
@@ -90,6 +91,7 @@ userRouter.get(
   })
 );
 
+//=== User signin
 userRouter.post(
   "/signin",
   expressAsyncHandler(async (req, res) => {
@@ -100,7 +102,14 @@ userRouter.post(
         .status(401)
         .send({ message: "Invalid email, please try again !" });
     else {
-      // user exist then check password
+      // If exist then check if email is confirm
+      // If no, send a message
+      if (user.status === "pending") {
+        return res
+          .status(401)
+          .send({ message: "Pending Account. Please Verify Your Email!" });
+      }
+      // If yes
       const pwdMatch = bcrypt.compareSync(req.body.password, user.password);
       if (!pwdMatch)
         return res
@@ -119,6 +128,7 @@ userRouter.post(
   })
 );
 
+//=== User register
 userRouter.post(
   "/register",
   expressAsyncHandler(async (req, res) => {
@@ -128,24 +138,41 @@ userRouter.post(
     if (existUser)
       return res.status(409).send({
         message: "Email is already taken, please try another email !",
+        success: false,
       });
 
     // else, create new user
+    const code = jwt.sign(
+      { email: req.body.email },
+      process.env.SECRET_KEY || "mytopsecret"
+    );
+
     const user = new User({
       name: req.body.name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password),
       isAdmin: false,
+      confirmationCode: code,
     });
 
     const createdUser = await user.save();
+
+    // Send mail
+    sendMail(createdUser.name, createdUser.email, createdUser.confirmationCode);
+
     res.send({
-      _id: createdUser._id,
-      name: createdUser.name,
-      email: createdUser.email,
-      isAdmin: createdUser.isAdmin,
-      token: generateToken(createdUser),
+      message:
+        "User was registered successfully! Please check your email for confirmation.",
+      success: true,
     });
+
+    // res.send({
+    //   _id: createdUser._id,
+    //   name: createdUser.name,
+    //   email: createdUser.email,
+    //   isAdmin: createdUser.isAdmin,
+    //   token: generateToken(createdUser),
+    // });
   })
 );
 

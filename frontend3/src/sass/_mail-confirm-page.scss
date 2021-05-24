@@ -1,0 +1,46 @@
+.mail-confirm {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .mail-confirm-box {
+    background: #e9ecef;
+    padding: 24px 80px;
+    border-radius: 3px;
+
+    .mail-confirm-icon {
+      text-align: center;
+      margin-bottom: 14px;
+
+      i {
+        font-size: 38px;
+        border: 2px solid #2edb22;
+        border-radius: 100%;
+        padding: 12px;
+        color: #34ba2b;
+      }
+    }
+
+    .mail-confirm-text {
+      text-align: center;
+      font-size: 17px;
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 28px;
+    }
+
+    .mail-confirm-btn {
+      text-align: center;
+
+      a {
+        display: inline-block;
+        background: #ff2832;
+        padding: 10px 28px;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 2px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}

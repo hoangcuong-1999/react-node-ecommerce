@@ -1,11 +1,12 @@
 const express = require("express");
-const { isAuth, isAdmin } = require("../utils");
+const { isAuth, isAdmin, generateToken } = require("../utils");
 const Order = require("../models/orderModel");
 const expressAsyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
 const User = require("../models/userModel");
-const { db } = require("../models/orderModel");
 const Axios = require("axios");
+const { sendMail, generateTable } = require("../utils");
+const data = require("../data");
 
 const orderRouter = express.Router();
 
@@ -51,7 +52,16 @@ orderRouter.post(
     });
 
     const email = req.user.email;
-    await Axios.post(`http://localhost:5000/send-mail?type=pending`, { email });
+    const subject = "Your order has been created";
+    const html = `
+      <h2>You order has been created</h2>
+      <p>Hi ${createdOrder.shippingAddress.name},</p>
+      <p>Thank you for your order. We will check out your order and send email back to you as soon as possible.</p>
+      <p>You cart items:</p>
+      ${generateTable(createdOrder.cartItems)}
+    `;
+    //=== Send mail
+    sendMail(email, subject, html);
 
     res.status(201).send({ message: "New order created", order: createdOrder });
   })
@@ -153,16 +163,17 @@ orderRouter.put(
     const { status } = req.body;
     try {
       const order = await Order.findById(req.params.id).populate("user");
+
       order.status = status;
       const editedOrder = await order.save();
 
       // Send email
       if (status !== "CancledByAdmin") {
+        const emailType = data.mails.find((item) => item.type === status);
         const email = order.user.email;
-        await Axios.post(
-          `http://localhost:5000/send-mail?type=${status.toLowerCase()}`,
-          { email }
-        );
+        const subject = emailType.subject;
+        const html = emailType.html + generateTable(order.cartItems);
+        sendMail(email, subject, html);
       }
 
       res.send(editedOrder);

@@ -90,13 +90,6 @@ function CheckoutPage(props) {
     });
   };
 
-  // const orderCreate = useSelector((state) => state.orderCreate);
-  // const {
-  //   order,
-  //   loading: orderCreateLoading,
-  //   error: orderCreateError,
-  // } = orderCreate;
-
   useEffect(() => {
     if (order) {
       Swal.fire("Success!", "Your order is placed successfully.", "success");
@@ -202,8 +195,6 @@ function CheckoutPage(props) {
               </li>
             </ul>
             <button onClick={placeOrderHandler}>Place Order</button>
-            {loading && <LoadingBox />}
-            {error && <ErrorBox>{error}</ErrorBox>}
           </div>
         </div>
       </section>

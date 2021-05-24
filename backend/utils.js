@@ -2,6 +2,71 @@ const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const Rating = require("./models/ratingModel");
 const Product = require("./models/productModel");
+const nodemailer = require("nodemailer");
+
+// Calculating cart total
+const cartTotal = (cartItems) => {
+  let total = cartItems.reduce((a, item) => a + item.price * item.qty, 0);
+  return total.toFixed(2);
+};
+// Generate email content table
+exports.generateTable = (cartItems) => {
+  let message =
+    '<table style="border: 1px solid #333;">' +
+    "<thead>" +
+    "<tr>" +
+    "<th> Product </th>" +
+    "<th> Quantity </th>" +
+    "<th> Price </th>" +
+    "<th> Subtotal </th>" +
+    "</tr>" +
+    "</thead>";
+
+  cartItems.forEach((item) => {
+    message +=
+      "<tr>" +
+      "<td>" +
+      item.name +
+      "</td>" +
+      "<td>" +
+      item.qty +
+      "</td>" +
+      "<td>$" +
+      item.price +
+      "</td>" +
+      "<td>$" +
+      (item.price * item.qty).toFixed(2) +
+      "</td>" +
+      "</tr>";
+  });
+
+  message += "</table>";
+  message += "<h4>Shipping: free</h4>";
+  message += "<h4>Cart total: $" + cartTotal(cartItems) + "</h4>";
+  return message;
+};
+
+// Send mail
+exports.sendMail = (email, subject, html) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      type: "OAuth2",
+      user: process.env.EMAIL,
+      pass: process.env.WORD,
+      clientId: process.env.OAUTH_CLIENTID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+    },
+  });
+  let mailOptions = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: subject,
+    html: html,
+  };
+  transporter.sendMail(mailOptions);
+};
 
 exports.generateToken = (user) => {
   return jwt.sign(

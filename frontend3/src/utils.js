@@ -1,3 +1,5 @@
+import Axios from "axios";
+
 export const filterPrices = [
   {
     text: "$0 - $50",
@@ -98,3 +100,9 @@ export const filterCmtBtn = [
     index: 5,
   },
 ];
+
+export const verifyUser = (code) => {
+  return Axios.get(`/api/auth/confirm/${code}`).then((response) => {
+    return response.data;
+  });
+};

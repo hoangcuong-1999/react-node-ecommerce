@@ -20,6 +20,10 @@ export const signin = (email, password) => async (dispatch, getState) => {
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     // Get Profile info after successfully signin
     dispatch(getProfileInfo());
+    localStorage.setItem(
+      "userInfo",
+      JSON.stringify(getState().userSignin.userInfo)
+    );
   } catch (error) {
     dispatch({
       type: USER_SIGNIN_FAIL,
@@ -29,10 +33,6 @@ export const signin = (email, password) => async (dispatch, getState) => {
           : error.message,
     });
   }
-  localStorage.setItem(
-    "userInfo",
-    JSON.stringify(getState().userSignin.userInfo)
-  );
 };
 
 export const signout = () => (dispatch) => {
@@ -64,32 +64,30 @@ export const register = (name, email, password) => async (dispatch) => {
 };
 
 // getState() trả về Object => có thể constructuring properties
-export const resetPassword = (currentPwd, newPwd) => async (
-  dispatch,
-  getState
-) => {
-  dispatch({ type: PASSWORD_RESET_REQUEST });
-  try {
-    const {
-      userSignin: { userInfo },
-    } = getState();
-    const { data } = await Axios.put(
-      "/api/users/change-password",
-      { currentPwd, newPwd },
-      {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      }
-    );
-    dispatch({ type: PASSWORD_RESET_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({
-      type: PASSWORD_RESET_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+export const resetPassword =
+  (currentPwd, newPwd) => async (dispatch, getState) => {
+    dispatch({ type: PASSWORD_RESET_REQUEST });
+    try {
+      const {
+        userSignin: { userInfo },
+      } = getState();
+      const { data } = await Axios.put(
+        "/api/users/change-password",
+        { currentPwd, newPwd },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+      dispatch({ type: PASSWORD_RESET_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: PASSWORD_RESET_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };

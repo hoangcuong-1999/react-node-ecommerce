@@ -11,7 +11,23 @@ import {
   PASSWORD_RESET_FAIL,
   PASSWORD_REMOVE_SUCCESS_PROP,
   PASSWORD_CLEAR_MESSAGE,
+  USER_REGISTER_RESET,
 } from "../constants/userConstants";
+
+export const userRegisterReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_REGISTER_REQUEST:
+      return { loading: true };
+    case USER_REGISTER_SUCCESS:
+      return { loading: false, data: action.payload };
+    case USER_REGISTER_FAIL:
+      return { loading: false, error: action.payload };
+    case USER_REGISTER_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
 
 export const userSigninReducer = (state = {}, action) => {
   switch (action.type) {
@@ -21,12 +37,7 @@ export const userSigninReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload };
     case USER_SIGNIN_FAIL:
       return { loading: false, error: action.payload };
-    case USER_REGISTER_REQUEST:
-      return { loading: true };
-    case USER_REGISTER_SUCCESS:
-      return { loading: false, userInfo: action.payload };
-    case USER_REGISTER_FAIL:
-      return { loading: false, error: action.payload };
+
     case PASSWORD_RESET_REQUEST:
       return {
         ...state,

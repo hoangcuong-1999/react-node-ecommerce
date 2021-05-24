@@ -24,6 +24,15 @@ const userSchema = new mongoose.Schema(
       default: true,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["pending", "active"],
+      default: "pending",
+    },
+    confirmationCode: {
+      type: String,
+      unique: true,
+    },
   },
   {
     timestamps: true,
