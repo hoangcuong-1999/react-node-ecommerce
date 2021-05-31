@@ -3,7 +3,9 @@ import Title from "../title/Title";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { addSaleOff } from "../../actions/saleoffActions";
+import { addSaleOff, listSaleoff } from "../../actions/saleoffActions";
+import Swal from "sweetalert2";
+import { SALEOFF_ADD_RESET } from "../../constants/saleoffConstants";
 
 function SaleoffAdd() {
   const [name, setName] = useState("");
@@ -96,8 +98,30 @@ function SaleoffAdd() {
       applyForValue,
       applyNumber,
     };
-    dispatch(addSaleOff(saleoff));
+    Swal.fire({
+      title: "Add saleoff",
+      text: "Do you want to add this saleoff ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.value) {
+        dispatch(addSaleOff(saleoff));
+      }
+    });
   };
+
+  const saleoffAdd = useSelector((state) => state.saleoffAdd);
+  const { saleoff, error, loading } = saleoffAdd;
+
+  useEffect(() => {
+    if (saleoff) {
+      Swal.fire("Success!", "Your order is placed successfully.", "success");
+      dispatch({ type: SALEOFF_ADD_RESET });
+      dispatch(listSaleoff());
+    }
+  }, [dispatch, saleoff]);
 
   return (
     <>

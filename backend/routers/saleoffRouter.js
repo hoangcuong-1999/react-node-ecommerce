@@ -54,6 +54,7 @@ saleoffRouter.post(
       });
       const createdSaleoff = await newSaleoff.save();
       product.saleoff = product.price - (product.price * discount) / 100;
+      product.type = "On Sale";
       await product.save();
       res.status(200).send(createdSaleoff);
     }
@@ -78,6 +79,45 @@ saleoffRouter.post(
       const createdSaleoff = await newSaleoff.save();
       await updateProductSaleoff(products, method, discount);
       res.send(createdSaleoff);
+    }
+  })
+);
+
+// Remove saleoff
+saleoffRouter.delete(
+  "/:saleoffId",
+  expressAsyncHandler(async (req, res) => {
+    const saleoff = await Saleoff.findById(req.params.saleoffId);
+    saleoff.products.forEach(async (item) => {
+      const pro = await Product.findById(item.product);
+      pro.saleoff = 0;
+      pro.type = "Featured Product";
+      await pro.save();
+    });
+    try {
+      const removedPro = await Saleoff.findByIdAndDelete(req.params.saleoffId);
+      res.status(200).send(removedPro);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  })
+);
+
+// Get specific saleoff
+saleoffRouter.get(
+  "/:saleoffId",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const saleoff = await Saleoff.findById(req.params.saleoffId).populate({
+        path: "products",
+        populate: {
+          path: "product",
+          model: "Product",
+        },
+      });
+      res.send(saleoff);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
     }
   })
 );

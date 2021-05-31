@@ -100,16 +100,25 @@ function Sidebar(props) {
         </div>
         <div
           className={`sidebar__link ${
-            pathname === "/admin/dashboard/contacts" ? "active" : ""
+            pathname === "/admin/dashboard/contacts" ||
+            pathname === "/admin/dashboard/saleoff/add"
+              ? "active"
+              : ""
           }`}
         >
           <i class="fas fa-envelope"></i>
           <Link to="/admin/dashboard/contacts">Contacts</Link>
         </div>
-        <div className="sidebar__link">
+
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard/saleoff" ? "active" : ""
+          }`}
+        >
           <i class="fas fa-envelope"></i>
           <Link to="/admin/dashboard/saleoff">Sale off</Link>
         </div>
+
         <div className="sidebar__link">
           <i class="fas fa-sign-out-alt"></i>
           <Link to="#" onClick={signoutHandler}>

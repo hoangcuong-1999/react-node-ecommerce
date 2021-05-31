@@ -39,6 +39,7 @@ import {
 import {
   saleoffAddReducer,
   saleoffListReducer,
+  saleoffRemoveReducer,
 } from "./reducers/saleoffReducer";
 import { userProfileReducer } from "./reducers/userProfileReducer";
 import {
@@ -93,6 +94,7 @@ const rootReducer = combineReducers({
   brandDetails: brandDetailsReducer,
   saleoffList: saleoffListReducer,
   saleoffAdd: saleoffAddReducer,
+  saleoffRemove: saleoffRemoveReducer,
 });
 
 // update compose()

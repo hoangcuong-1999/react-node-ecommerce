@@ -18,6 +18,8 @@ import OrderShow from "./order/OrderShow";
 import OrderDetails from "./order/OrderDetails";
 import SaleoffShow from "./saleoff/SaleoffShow";
 import SaleoffAdd from "./saleoff/SaleoffAdd";
+import ProductTable from "./product/ProductTable";
+import AppliedProducts from "./saleoff/AppliedProducts";
 
 function Dashboard(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -70,8 +72,14 @@ function Dashboard(props) {
       <Route path="/admin/dashboard/users" component={UserShow} />
       <Route exact path="/admin/dashboard/orders" component={OrderShow} />
       <Route path="/admin/dashboard/orders/:id" component={OrderDetails} />
+
       <Route exact path="/admin/dashboard/saleoff" component={SaleoffShow} />
-      <Route path="/admin/dashboard/saleoff/add" component={SaleoffAdd} />
+      <Route exact path="/admin/dashboard/saleoff/add" component={SaleoffAdd} />
+      <Route
+        exact
+        path="/admin/dashboard/saleoff/show/:saleoffId"
+        component={AppliedProducts}
+      />
 
       <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>
