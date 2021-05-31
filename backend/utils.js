@@ -4,6 +4,27 @@ const Rating = require("./models/ratingModel");
 const Product = require("./models/productModel");
 const nodemailer = require("nodemailer");
 
+// Update product sale on Product model
+exports.updateProductSaleoff = (products, method, discount) => {
+  products.forEach(async (product) => {
+    const pro = await Product.findById(product._id);
+    pro.saleoff = pro.price - (Number(discount) * pro.price) / 100;
+    pro.type = "On Sale";
+    await pro.save();
+  });
+};
+
+// Generate products arr
+exports.generateProductArr = (products, applyNumber) => {
+  const proArr = products.map((product) => {
+    return {
+      product: product._id,
+      applyNumber: applyNumber,
+    };
+  });
+  return proArr;
+};
+
 // Calculating cart total
 const cartTotal = (cartItems) => {
   let total = cartItems.reduce((a, item) => a + item.price * item.qty, 0);
@@ -51,12 +72,8 @@ exports.sendMail = (email, subject, html) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      type: "OAuth2",
       user: process.env.EMAIL,
       pass: process.env.WORD,
-      clientId: process.env.OAUTH_CLIENTID,
-      clientSecret: process.env.OAUTH_CLIENT_SECRET,
-      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
     },
   });
   let mailOptions = {

@@ -360,8 +360,8 @@ table.table__no__data {
 
     .table__no__data__img__wrapper {
       display: inline-block;
-      width: 180px;
-      height: 180px;
+      width: 100px;
+      height: 100px;
       background-color: #e6e6e6;
       display: flex;
       justify-content: center;
@@ -370,7 +370,7 @@ table.table__no__data {
       border-radius: 50%;
 
       img {
-        width: 80px;
+        width: 40px;
       }
     }
   }

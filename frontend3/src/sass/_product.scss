@@ -23,6 +23,16 @@
   .product__card__text {
     margin-top: 20px;
 
+    .card__text__price {
+      h5:first-child {
+        text-decoration: line-through;
+      }
+
+      h5:last-child {
+        color: red;
+      }
+    }
+
     h6 {
       font-size: 14px;
       color: rgba(0, 0, 0, 0.8);

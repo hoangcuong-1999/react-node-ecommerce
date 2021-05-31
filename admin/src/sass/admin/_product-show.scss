@@ -6,7 +6,8 @@
 #contact-show,
 #user-show,
 #order-show,
-#admin-order-details {
+#admin-order-details,
+#saleoff-show {
   grid-area: main;
   font-family: "Poppins", sans-serif;
 
@@ -78,17 +79,16 @@
     }
 
     table {
-      display: inline-block;
       border-collapse: collapse;
       width: 100%;
       margin-top: 10px;
-      // box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-      //   rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-      // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
-      //   rgba(0, 0, 0, 0.24) 0px 1px 2px;
       border: 1px solid #ddd;
       border-top: none;
       padding: 10px;
+
+      &.table__no__data {
+        display: block;
+      }
     }
 
     td,

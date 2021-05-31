@@ -4,8 +4,18 @@ import Rating from "./Rating";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// When use click on any product card, that product will pass into this component. Then we use that info to process this component
+// When user click on any product card, that product will pass into this component. Then we use that info to process this component
 function Product(props) {
+  const price =
+    !props.product.saleoff || props.product.saleoff === 0 ? (
+      <h5>$ {props.product.price}</h5>
+    ) : (
+      <div className="card__text__price d-flex justify-content-between">
+        <h5>$ {props.product.price}</h5>
+        <h5>$ {props.product.saleoff}</h5>
+      </div>
+    );
+
   return (
     <div className="product__card">
       <ToastContainer />
@@ -20,7 +30,7 @@ function Product(props) {
           rating={props.product.rating}
           numReviews={props.product.numReviews}
         />
-        <h5>$ {props.product.price}</h5>
+        {price}
       </div>
     </div>
   );

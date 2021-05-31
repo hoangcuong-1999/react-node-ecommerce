@@ -16,8 +16,10 @@ import ContactShow from "./contact/ContactShow";
 import UserShow from "./user/UserShow";
 import OrderShow from "./order/OrderShow";
 import OrderDetails from "./order/OrderDetails";
+import SaleoffShow from "./saleoff/SaleoffShow";
+import SaleoffAdd from "./saleoff/SaleoffAdd";
 
-function Dashboard() {
+function Dashboard(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const openSidebar = () => {
@@ -68,6 +70,8 @@ function Dashboard() {
       <Route path="/admin/dashboard/users" component={UserShow} />
       <Route exact path="/admin/dashboard/orders" component={OrderShow} />
       <Route path="/admin/dashboard/orders/:id" component={OrderDetails} />
+      <Route exact path="/admin/dashboard/saleoff" component={SaleoffShow} />
+      <Route path="/admin/dashboard/saleoff/add" component={SaleoffAdd} />
 
       <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>

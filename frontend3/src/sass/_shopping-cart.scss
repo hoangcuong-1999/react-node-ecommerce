@@ -154,7 +154,7 @@
       width: 100%;
       display: block;
       padding: 14px 0;
-      background: #f08804;
+      background: #d9372b;
       text-align: center;
       color: #fff;
       font-weight: 500;
@@ -187,11 +187,16 @@
         padding: 12px 18px;
         border-radius: 2px;
         background: none;
-        background: #f08804;
+        background: #ff2832;
         color: #fff;
         font-weight: 500;
         font-size: 16px;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.09);
+
+        &:hover {
+          background: #d9372b;
+          box-shadow: none;
+        }
       }
 
       .buttons {
@@ -204,6 +209,11 @@
             background: none;
             color: #000;
             border: 1px solid #eee;
+
+            &:hover {
+              background: rgba(0, 0, 0, 0.02);
+              box-shadow: none;
+            }
           }
         }
       }

@@ -67,7 +67,7 @@ ratingRouter.get(
   })
 );
 
-//=== Get list of comments on specific product based on ProductSlug
+//=== Get list of comments on specific product based on ProductId
 ratingRouter.get(
   "/comments/:productId",
   expressAsyncHandler((req, res) => {

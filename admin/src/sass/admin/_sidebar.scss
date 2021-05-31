@@ -54,6 +54,12 @@
   padding: 10px;
   border-radius: 3px;
   margin-bottom: 5px;
+
+  &.active {
+    a {
+      color: #ff2832;
+    }
+  }
 }
 
 .active_menu_link {

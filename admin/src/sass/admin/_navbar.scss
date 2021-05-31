@@ -32,8 +32,14 @@
   padding-bottom: 12px;
 }
 
+.navbar__right {
+  .admin__name {
+    display: inline-block;
+  }
+}
+
 .navbar__right > a {
-  margin-left: 20px;
+  margin-left: 10px;
   text-decoration: none;
 }
 

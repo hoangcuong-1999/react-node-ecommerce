@@ -94,6 +94,10 @@
             border-radius: 3px;
             color: #69a6ce;
 
+            &:focus {
+              border: 1px solid #0000e6;
+            }
+
             &::placeholder {
               color: #69a6ce;
             }
@@ -136,6 +140,10 @@
             font-weight: 600;
             border-radius: 3px;
             // margin-top: 30px;
+
+            &:hover {
+              background: #0a286e;
+            }
           }
         }
 

@@ -306,7 +306,7 @@ function ShopPage2(props) {
 
               {/* Pagination */}
               {products && products.length ? (
-                <div className="paginations">
+                <div className="shop-paginations">
                   <ul>
                     <li>
                       <Link to={urlGenerator({ page: Number(page) - 1 })}>

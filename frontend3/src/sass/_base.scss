@@ -150,10 +150,15 @@ ol {
   text-transform: uppercase;
   padding: 14px 30px;
   color: #ffffff;
-  background: #f08804;
+  background: #ff2832;
   letter-spacing: 1px;
   border: none;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: #d9372b;
+    box-shadow: none;
+  }
 }
 
 .site-btn {

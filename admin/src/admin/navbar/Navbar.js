@@ -1,8 +1,10 @@
 import React from "react";
 import avatar from "../../assets/avatar.svg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navbar({ sidebarOpen, openSidebar }) {
+  const { userInfo } = useSelector((state) => state.userSignin);
   return (
     <nav className="navbar">
       <div className="nav_icon" onClick={() => openSidebar()}>
@@ -15,13 +17,8 @@ function Navbar({ sidebarOpen, openSidebar }) {
           Admin
         </Link>
       </div>
-      <div className="navbar__right">
-        <Link to="#">
-          <i className="fa fa-search"></i>
-        </Link>
-        <Link to="#">
-          <i className="fa fa-clock-o"></i>
-        </Link>
+      <div className="navbar__right d-flex align-items-center">
+        <div className="admin__name">{userInfo.name}</div>
         <Link to="#">
           <img width="30" src={avatar} alt="avatar" />
         </Link>

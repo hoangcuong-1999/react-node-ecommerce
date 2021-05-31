@@ -1,13 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signout } from "../../actions/userActions";
+import Swal from "sweetalert2";
 // import logo from "../../assets/logo.png";
 
-function Sidebar({ sidebarOpen, closeSidebar }) {
+function Sidebar(props) {
+  const { sidebarOpen, closeSidebar } = props;
+  const { pathname } = props.location;
   const dispatch = useDispatch();
   const signoutHandler = () => {
-    dispatch(signout());
+    Swal.fire({
+      title: "Signout now ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.value) {
+        dispatch(signout());
+      }
+    });
   };
 
   return (
@@ -27,34 +40,75 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
       </div>
 
       <div className="sidebar__menu">
-        <div className="sidebar__link active_menu_link">
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard" ? "active" : ""
+          }`}
+        >
           <i className="fa fa-home"></i>
           <Link to="/admin/dashboard">Dashboard</Link>
         </div>
         <h2>MAIN</h2>
-        <div className="sidebar__link">
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard/orders" && "active"
+          }`}
+        >
           <i class="fas fa-file-alt fa-2x text-white"></i>
           <Link to="/admin/dashboard/orders">Orders</Link>
         </div>
-        <div className="sidebar__link">
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard/categories" ||
+            pathname === "/admin/dashboard/categories/add"
+              ? "active"
+              : ""
+          }`}
+        >
           <i class="fas fa-book"></i>
           <Link to="/admin/dashboard/categories">Categories</Link>
         </div>
-        <div className="sidebar__link">
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard/brands" ||
+            pathname === "/admin/dashboard/brands/add"
+              ? "active"
+              : ""
+          }`}
+        >
           <i class="fas fa-book"></i>
           <Link to="/admin/dashboard/brands">Brands</Link>
         </div>
-        <div className="sidebar__link">
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard/products" ||
+            pathname === "/admin/dashboard/products/add"
+              ? "active"
+              : ""
+          }`}
+        >
           <i class="fas fa-tshirt text-white"></i>
           <Link to="/admin/dashboard/products">Products</Link>
         </div>
-        <div className="sidebar__link">
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard/users" ? "active" : ""
+          }`}
+        >
           <i class="fas fa-user text-white"></i>
           <Link to="/admin/dashboard/users">Users</Link>
         </div>
-        <div className="sidebar__link">
+        <div
+          className={`sidebar__link ${
+            pathname === "/admin/dashboard/contacts" ? "active" : ""
+          }`}
+        >
           <i class="fas fa-envelope"></i>
           <Link to="/admin/dashboard/contacts">Contacts</Link>
+        </div>
+        <div className="sidebar__link">
+          <i class="fas fa-envelope"></i>
+          <Link to="/admin/dashboard/saleoff">Sale off</Link>
         </div>
         <div className="sidebar__link">
           <i class="fas fa-sign-out-alt"></i>
@@ -67,4 +121,4 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
   );
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

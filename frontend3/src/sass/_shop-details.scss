@@ -129,7 +129,7 @@
 
     i {
       font-size: 26px;
-      color: #f7941d;
+      color: #ff2832;
       display: inline-block;
       margin-right: 5px;
     }
@@ -204,10 +204,14 @@
     margin-right: 5px;
     cursor: pointer;
 
+    &:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
     &.active {
-      background: #f08804;
+      background: #ff2832;
       color: $white-color;
-      border-color: #f08804;
+      border-color: #ff2832;
     }
 
     input {
@@ -629,7 +633,7 @@ section.shop-details {
       }
 
       // Pagination
-      .paginations {
+      .shop-paginations {
         text-align: right;
 
         ul {

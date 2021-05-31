@@ -70,13 +70,15 @@ function ProductTable({ products }) {
             <th className="product__img">Image</th>
             <th className="product__actions">Actions</th>
           </tr>
-          <div className="table__no__data__img">
-            <div className="table__no__data__img__wrapper">
-              <img src="/assets/img/icon/not-found.png" alt="" />
+          <div className="table__no__data__box">
+            <div className="table__no__data__img">
+              <div className="table__no__data__img__wrapper">
+                <img src="/assets/img/icon/not-found.png" alt="" />
+              </div>
             </div>
-          </div>
-          <div className="table__no__data__title">
-            <h4>No Data</h4>
+            <div className="table__no__data__title">
+              <h4>No Data</h4>
+            </div>
           </div>
         </table>
       )}
