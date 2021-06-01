@@ -131,6 +131,11 @@ function ProductDetailsPage(props) {
                       rating={product.rating}
                       numReviews={product.numReviews}
                     />
+                    {product.saleoff ? (
+                      <div className="price">${product.saleoff}</div>
+                    ) : (
+                      <div className="price">${product.price}</div>
+                    )}
                     <div className="product__instock__status">
                       <span>Status: </span>
                       {product.countInStock > 0 ? (

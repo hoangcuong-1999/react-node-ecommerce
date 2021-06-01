@@ -158,7 +158,15 @@ userRouter.post(
     const createdUser = await user.save();
 
     // Send mail
-    sendMail(createdUser.name, createdUser.email, createdUser.confirmationCode);
+    const email = createdUser.email;
+    const subject = "Please confirm your account";
+    const html = `<h1>Email Confirmation</h1>
+        <h2>Hello ${createdUser.name}</h2>
+        <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
+        <a href=http://localhost:3003/confirm/${createdUser.confirmationCode}> Click here</a>
+        </div>`;
+
+    sendMail(email, subject, html);
 
     res.send({
       message:
