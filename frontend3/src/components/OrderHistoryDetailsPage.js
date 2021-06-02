@@ -23,6 +23,8 @@ function OrderHistoryDetailsPage(props) {
   const ratingList = useSelector((state) => state.ratingList);
   const { ratings } = ratingList;
 
+  console.log(order);
+
   const dispatch = useDispatch();
   const orderId = props.match.params.id;
   useEffect(() => {

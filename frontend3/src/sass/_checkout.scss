@@ -115,6 +115,11 @@
       font-size: 15px;
       font-weight: 500;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background: #ab580c;
+        box-shadow: none;
+      }
     }
 
     .checkout__payment__method {

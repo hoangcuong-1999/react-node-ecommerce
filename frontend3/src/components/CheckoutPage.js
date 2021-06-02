@@ -59,8 +59,15 @@ function CheckoutPage(props) {
     dispatch(savePaymentMethod(payment));
   };
 
+  const getActualPrice = (product) => {
+    let saleoff = product.saleoff;
+    let price = product.price;
+    if (saleoff && saleoff !== 0) return saleoff;
+    return price;
+  };
+
   cart.cartTotal = cart.cartItems.reduce(
-    (a, item) => a + item.price * item.qty,
+    (a, item) => a + getActualPrice(item) * item.qty,
     0
   );
 
@@ -157,7 +164,7 @@ function CheckoutPage(props) {
                     <td>{item.qty}</td>
                     <td>{item.size}</td>
                     <td>{item.color}</td>
-                    <td>${item.price * item.qty}</td>
+                    <td>${getActualPrice(item) * item.qty}</td>
                   </tr>
                 ))}
               </table>
@@ -182,7 +189,7 @@ function CheckoutPage(props) {
             </div>
             {paymentMethod.activePayment.id === 2 && (
               <div className="paypal__payment__method">
-                <PayPalButtonV2 amount={0.01} onSuccess={onSuccess} />
+                <PayPalButtonV2 amount={cart.cartTotal} onSuccess={onSuccess} />
               </div>
             )}
 

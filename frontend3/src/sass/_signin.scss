@@ -95,6 +95,10 @@
       );
       color: #fff;
       letter-spacing: 1px;
+
+      &:hover {
+        background: #0e4c87;
+      }
     }
   }
 }

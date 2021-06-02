@@ -32,9 +32,16 @@ function CartPage(props) {
     props.history.push("/shop");
   };
 
+  const getActualPrice = (product) => {
+    let saleoff = product.saleoff;
+    let price = product.price;
+    if (saleoff && saleoff !== 0) return saleoff;
+    return price;
+  };
+
   /* Cart total calculation */
   const totalPrice = cartItems.reduce(
-    (a, item) => a + item.price * item.qty,
+    (a, item) => a + getActualPrice(item) * item.qty,
     0
   );
 
@@ -66,7 +73,7 @@ function CartPage(props) {
                             </div>
                             <div className="shopping__cart__item__text">
                               <h6>{item.name}</h6>
-                              <h5>${item.price}</h5>
+                              <h5>${getActualPrice(item)}</h5>
                             </div>
                           </td>
                           <td className="shopping__cart__quantity">
@@ -87,7 +94,9 @@ function CartPage(props) {
                             </div>
                           </td>
                           <td className="shopping__cart__total">
-                            <div>$ {(item.qty * item.price).toFixed(2)}</div>
+                            <div>
+                              $ {(item.qty * getActualPrice(item)).toFixed(2)}
+                            </div>
                           </td>
                           <td className="shopping__cart__remove">
                             <div

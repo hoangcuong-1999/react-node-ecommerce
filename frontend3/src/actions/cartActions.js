@@ -8,27 +8,29 @@ import {
   CART_SAVE_PAYMENT_METHOD,
 } from "../constants/cartConstants";
 
-export const addToCart = (productSlug, qty, size, color) => async (
-  dispatch,
-  getState
-) => {
-  const { data } = await Axios.get(`/api/products/${productSlug}`);
-  dispatch({
-    type: CART_ADD_ITEM,
-    payload: {
-      product: data._id,
-      slug: data.slug,
-      size,
-      color,
-      name: data.name,
-      image: data.image,
-      price: data.price,
-      countInStock: data.countInStock,
-      qty,
-    },
-  });
-  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
-};
+export const addToCart =
+  (productSlug, qty, size, color) => async (dispatch, getState) => {
+    const { data } = await Axios.get(`/api/products/${productSlug}`);
+    dispatch({
+      type: CART_ADD_ITEM,
+      payload: {
+        product: data._id,
+        slug: data.slug,
+        size,
+        color,
+        name: data.name,
+        image: data.image,
+        price: data.price,
+        countInStock: data.countInStock,
+        qty,
+        saleoff: data.saleoff,
+      },
+    });
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(getState().cart.cartItems)
+    );
+  };
 
 export const increaseQty = (productId, qty) => (dispatch, getState) => {
   dispatch({ type: QUANTITY_INCREASE, payload: { productId, qty } });

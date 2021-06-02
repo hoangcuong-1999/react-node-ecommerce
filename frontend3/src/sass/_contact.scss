@@ -96,6 +96,10 @@
         font-size: 14px;
         letter-spacing: 2px;
         font-weight: 600;
+
+        &:hover {
+          background: #222;
+        }
       }
     }
   }

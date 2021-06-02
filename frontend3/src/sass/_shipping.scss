@@ -74,6 +74,11 @@
         border: none;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         text-transform: uppercase;
+
+        &:hover {
+          background: #ab580c;
+          box-shadow: none;
+        }
       }
     }
   }

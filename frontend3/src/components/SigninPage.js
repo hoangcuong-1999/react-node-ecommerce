@@ -25,7 +25,13 @@ function SigninPage(props) {
     if (userInfo) {
       props.history.push(redirect);
     }
-  });
+  }, [userInfo, props.history, redirect]);
+
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch({ type: USER_SIGNIN_RESET });
+  //   };
+  // }, [dispatch]);
 
   return (
     <>
