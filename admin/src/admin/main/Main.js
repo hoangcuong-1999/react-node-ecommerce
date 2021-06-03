@@ -20,6 +20,13 @@ function Main() {
   const productList = useSelector((state) => state.productList);
   const { products, loading: productListLoading } = productList;
 
+  const amoutIncome =
+    orders &&
+    orders.reduce(
+      (a, order) => a + (order.status === "Received" ? order.cartTotal : 0),
+      0
+    );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -99,7 +106,7 @@ function Main() {
             <i class="fas fa-funnel-dollar fa-2x"></i>
             <div className="card_inner">
               <p className="text-primary-p">Amount Income</p>
-              <span className="font-bold text-title">$ 645</span>
+              <span className="font-bold text-title">$ {amoutIncome}</span>
             </div>
           </div>
         </div>
@@ -130,22 +137,22 @@ function Main() {
             <div className="charts__right__cards">
               <div className="card1">
                 <h1>Income</h1>
-                <p>$75,300</p>
+                <p>${amoutIncome}</p>
               </div>
 
               <div className="card2">
-                <h1>Sales</h1>
-                <p>$124,200</p>
+                <h1>Products</h1>
+                <p>{productListLoading ? <LoadingBox /> : totalProducts}</p>
               </div>
 
               <div className="card3">
                 <h1>Users</h1>
-                <p>3900</p>
+                <p>{userListLoading ? <LoadingBox /> : totalUsers}</p>
               </div>
 
               <div className="card4">
                 <h1>Orders</h1>
-                <p>1881</p>
+                <p>{orderListLoading ? <LoadingBox /> : totalOrders}</p>
               </div>
             </div>
           </div>

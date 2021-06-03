@@ -57,11 +57,16 @@
     button {
       display: inline-block;
       border: none;
-      background: rgb(255, 181, 0);
+      background: #f08804;
       padding: 8px 100px;
       border-radius: 3px;
       cursor: pointer;
       font-weight: 300;
+
+      &:hover {
+        background: #ab580c;
+        color: #fff;
+      }
     }
   }
 }

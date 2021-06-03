@@ -100,10 +100,7 @@ function Sidebar(props) {
         </div>
         <div
           className={`sidebar__link ${
-            pathname === "/admin/dashboard/contacts" ||
-            pathname === "/admin/dashboard/saleoff/add"
-              ? "active"
-              : ""
+            pathname === "/admin/dashboard/contacts" ? "active" : ""
           }`}
         >
           <i class="fas fa-envelope"></i>
@@ -112,7 +109,10 @@ function Sidebar(props) {
 
         <div
           className={`sidebar__link ${
-            pathname === "/admin/dashboard/saleoff" ? "active" : ""
+            pathname === "/admin/dashboard/saleoff" ||
+            pathname === "/admin/dashboard/saleoff/add"
+              ? "active"
+              : ""
           }`}
         >
           <i class="fas fa-envelope"></i>
